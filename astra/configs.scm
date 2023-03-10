@@ -1,4 +1,4 @@
-(define-module (engstrand configs)
+(define-module (astra configs)
   #:use-module (guix gexp)
   #:use-module (gnu packages fonts)
   #:use-module (rde features)
