@@ -7,13 +7,12 @@
   #:use-module (rde features)
   #:use-module (rde features predicates)
   #:use-module (astra systems)
-  #:use-module (engstrand wallpapers) ;; get-wallpaper-path
   #:export (make-config))
 
 ;; Allows dynamic loading of configuration modules based on file name.
 (define* (dynamic-load sub mod var-name #:key (throw? #t))
   (let ((var (module-variable
-              (resolve-module `(engstrand ,sub ,(string->symbol mod))) var-name)))
+              (resolve-module `(astra ,sub ,(string->symbol mod))) var-name)))
     (if (or (not var) (not (variable-bound? var)))
         (when throw?
           (raise-exception
@@ -34,7 +33,7 @@
           (user (getenv "RDE_USER"))
           (system (gethostname))
           (target (getenv "RDE_TARGET"))
-          (initial-os %engstrand-initial-os))
+          (initial-os %astra-initial-os))
 
   (ensure-pred string? user)
   (ensure-pred string? system)
@@ -47,21 +46,12 @@
   ;; All is good, create the configuration
   (define %generated-config
     (rde-config
-     (initial-os initial-os)
-     (features
-      (colorscheme-provider
-       ;; Fallback to default colorscheme
-       #:config (if (unspecified? %user-colorscheme)
-                    %engstrand-default-farg-config
-                    %user-colorscheme)
-       #:services (append %user-features
-                          %engstrand-system-base-features
-                          %system-features)))))
+     (initial-os initial-os)))
 
   (define %astra-home
     (rde-config-home-environment %generated-config))
 
-  (define %system-system
+  (define %astra-system
     (operating-system
      (inherit (rde-config-operating-system %generated-config))
      (kernel-arguments

@@ -10,39 +10,26 @@
   #:use-module (rde features shellutils)
   #:use-module (rde features fontutils)
   #:use-module (rde features version-control)
-  #:use-module (engstrand utils)
-  #:use-module (engstrand systems)
-  #:use-module (engstrand features nix)
-  #:use-module (engstrand features base)
-  #:use-module (engstrand features audio)
-  #:use-module (engstrand features utils)
-  #:use-module (engstrand features video)
-  #:use-module (engstrand features state)
-  #:use-module (engstrand features shells)
-  #:use-module (engstrand features neovim)
-  #:use-module (engstrand features theming)
-  #:use-module (engstrand features wayland)
-  #:use-module (engstrand features dwl-guile)
-  #:use-module (engstrand features documents)
-  #:use-module (engstrand features statusbar)
-  #:use-module (engstrand features messaging)
-  #:use-module (engstrand features networking)
-  #:use-module (engstrand features version-control)
+  #:use-module (astra utils)
+  #:use-module (astra systems)
+  #:use-module (astra features nix)
+  #:use-module (astra features state)
+  #:use-module (astra features networking)
   #:export (
-            %engstrand-base-system-packages
-            %engstrand-base-home-packages
-            %engstrand-base-features))
+            %astra-base-system-packages
+            %astra-base-home-packages
+            %astra-base-features))
 
 ;; This module is responsible for creating the rde config.
 ;; It will define all the different base system services.
 ;;
 ;; Operating system configuration should be done in engstrand/systems.scm,
 ;; and computer specific settings in each corresponding file in engstrand/systems/.
-(define %engstrand-base-system-packages
+(define %astra-base-system-packages
   (pkgs '("git" "nss-certs")))
 
 ;; Move some of the packages to separate features?
-(define %engstrand-base-home-packages
+(define %astra-base-home-packages
   (pkgs '("curl" "htop" "ncurses"
           "hicolor-icon-theme" "adwaita-icon-theme" "gnome-themes-extra")))
 
@@ -52,29 +39,26 @@
 (define (make-entrypoint)
   (scheme-file "entrypoint.scm"
                #~(begin
-                   (use-modules (engstrand reconfigure))
+                   (use-modules (astra reconfigure))
                    (make-config #:user #$(getenv "RDE_USER")
                                 #:system #$(gethostname)))))
 
-(define %engstrand-base-features
+(define %astra-base-features
   (list
    (feature-base-services
     #:guix-substitute-urls (list "https://substitutes.nonguix.org")
     #:guix-authorized-keys (list (local-file "files/nonguix-signing-key.pub")))
    (feature-desktop-services)
    (feature-networking)
-   (feature-switch-to-tty-on-boot)
    ;; TODO: Move to systems/*.scm?
    (feature-git
     #:sign-commits? #t)
-   (feature-git-colorscheme)
    (feature-fonts
     #:font-packages (list font-jetbrains-mono font-iosevka-aile)
     #:font-monospace (font "JetBrains Mono" #:size 13)
     #:font-sans (font "Iosevka Aile" #:size 13)
     #:font-serif (font "Iosevka Aile" #:size 13))
    (feature-pipewire)
-   (feature-pulseaudio-control)
    (feature-backlight)
    (feature-bash)
    (feature-zsh)
@@ -91,8 +75,8 @@
      (templates "$HOME")
      (desktop "$HOME")))
    (feature-base-packages
-    #:system-packages %engstrand-base-system-packages
-    #:home-packages %engstrand-base-home-packages)
+    #:system-packages %astra-base-system-packages
+    #:home-packages %astra-base-home-packages)
    ;; (feature-state-git
    ;;   #:repos
    ;;   `(("engstrand-config/utils" .
@@ -103,26 +87,8 @@
    ;;      "git@github.com:engstrand-config/farg.git")))
    (feature-dotfiles
     #:dotfiles
-    `((".aliasrc" ,(local-file "files/aliasrc"))
-      (".inputrc" ,(local-file "files/inputrc"))
+    `(
       (".nix-channels" ,(local-file "files/nix-channels"))
       (".config/guix/channels.scm" ,(local-file "channels.scm"))
-      (".config/guix/config.scm" ,(make-entrypoint))
-      (".config/dunst/dunstrc" ,(local-file "files/config/dunst/dunstrc"))
-      (".config/nvim/init.vim" ,(local-file "files/config/nvim/init.vim"))
-      (".config/nvim/autoload/plug.vim" ,(local-file "files/config/nvim/autoload/plug.vim"))
-      (".config/picom/picom.conf" ,(local-file "files/config/picom/picom.conf"))))
-   (feature-nix)
-   (feature-mpv)
-   (feature-obs)
-   (feature-imv)
-   (feature-neovim)
-   (feature-signal)
-   (feature-wayland-swaybg)
-   (feature-wayland-bemenu)
-   (feature-wayland-bemenu-power)
-   (feature-wayland-foot)
-   (feature-wayland-mako)
-   (feature-wayland-wlsunset)
-   (feature-wayland-screenshot)
-   (feature-wayland-swaylock)))
+      (".config/guix/config.scm" ,(make-entrypoint))))
+   (feature-nix)))
