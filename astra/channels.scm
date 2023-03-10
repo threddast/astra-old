@@ -1,4 +1,4 @@
-(define-module (engstrand channels)
+(define-module (astra channels)
   #:use-module (guix channels))
 
 (list
@@ -12,10 +12,5 @@
      "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
  (channel
   (name 'astra)
-  (url "https://github.com/engstrand-config/guix-dotfiles")
-  (branch "main")
-  (introduction
-   (make-channel-introduction
-    "005c42a980c895e0853b821494534d67c7b85e91"
-    (openpgp-fingerprint
-     "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C")))))
+  (url "https://github.com/threddast/astra")
+  (branch "main")))
