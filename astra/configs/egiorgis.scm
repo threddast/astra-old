@@ -16,8 +16,6 @@
      #:user-name "egiorgis"
      #:full-name "Erik Giorgis"
      #:email "egiorgis@egiorg.is")
-    (feature-transmission)
-    (feature-isync)
     (feature-firefox
      #:default-browser? #t))
    %astra-base-features))
