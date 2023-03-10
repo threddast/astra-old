@@ -4,7 +4,7 @@
   #:use-module (gnu services)
   #:use-module (gnu services nix)
   #:use-module (gnu home services)
-  ;; #:use-module (engstrand utils)
+  #:use-module (astra utils)
   #:export (feature-nix))
 
 (define* (feature-nix)

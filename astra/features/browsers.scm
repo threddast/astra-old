@@ -8,6 +8,7 @@
   #:use-module (gnu home services)
   #:use-module (nongnu packages mozilla)
   #:use-module (gnu packages web-browsers)
+  #:use-module (astra utils)
   #:export (feature-firefox))
 
 (define* (feature-firefox
@@ -24,7 +25,7 @@
          (simple-service
           'set-firefox-environment-variable
           home-environment-variables-service-type
-          `(("BROWSER" . ,(file-append package "/bin/firefox")))))
+          `(("BROWSER" . ,(file-append firefox/wayland "/bin/firefox")))))
      (simple-service
       'add-firefox-home-packages-to-profile
       home-profile-service-type

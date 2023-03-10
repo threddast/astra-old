@@ -5,6 +5,7 @@
   #:use-module (rde features gnupg)
   #:use-module (rde features bittorrent)
   #:use-module (rde features mail)
+  #:use-module (astra utils)
   #:use-module (astra configs)
   #:use-module (astra features browsers))
 

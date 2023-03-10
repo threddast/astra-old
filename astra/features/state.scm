@@ -4,6 +4,7 @@
   #:use-module (gnu services)
   #:use-module (gnu services nix)
   #:use-module (gnu home services)
+  #:use-module (astra utils)
   #:export (
             feature-dotfiles))
 ;; feature-state-git
