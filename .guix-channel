@@ -18,41 +18,14 @@
      (commit "33f86a4b48205c0dc19d7c036c85393f0766f806")
      (signer "736A C00E 1254 378B A982  7AF6 9DBE 8265 81B6 4490"))))
   (channel
-   (name home-service-dwl-guile)
-   (url "https://github.com/engstrand-config/home-service-dwl-guile")
-   (branch "main")
+   (name 'rosenthal)
+   (url "https://github.com/rakino/rosenthal")
+   (branch "trunk")
    (introduction
     (channel-introduction
      (version 0)
-     (commit "314453a87634d67e914cfdf51d357638902dd9fe")
-     (signer "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
-  (channel
-   (name home-service-dtao-guile)
-   (url "https://github.com/engstrand-config/home-service-dtao-guile")
-   (branch "main")
-   (introduction
-    (channel-introduction
-     (version 0)
-     (commit "64d0b70c547095ddc840dd07424b9a46ccc2e64e")
-     (signer "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
-  (channel
-   (name farg)
-   (url "https://github.com/engstrand-config/farg")
-   (branch "main")
-   (introduction
-    (channel-introduction
-     (version 0)
-     (commit "f94df02065d8691880dd5414e5c5ad27388d450f")
-     (signer "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
-  (channel
-   (name wallpapers)
-   (url "https://github.com/engstrand-config/wallpapers")
-   (branch "main")
-   (introduction
-    (channel-introduction
-     (version 0)
-     (commit "d876bfd1f49fe58cca185d20b5b57ae5c93d208e")
-     (signer "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
+     (commit "7677db76330121a901604dfbad19077893865f35")
+     (signer "13E7 6CD6 E649 C28C 3385  4DF5 5E5A A665 6149 17F7"))))
   (channel
    (name rde)
    (url "https://git.sr.ht/~abcdw/rde")
