@@ -9,6 +9,7 @@
   #:use-module (rde features system)
   #:use-module (rde features keyboard)
   #:use-module (gnu system)
+  #:use-module (gnu)
   #:use-module (gnu system keyboard)
   #:use-module (gnu system file-systems)
   #:use-module (gnu bootloader)
@@ -22,6 +23,7 @@
             %astra-keyboard-layout
             %astra-initial-os
             %astra-system-base-features))
+(use-service-modules cups desktop networking ssh xorg)
 
 (define-public %astra-timezone "Europe/Zurich")
 (define-public %astra-locale "en_US.utf8")
@@ -54,10 +56,8 @@
 
                    ;; To configure OpenSSH, pass an 'openssh-configuration'
                    ;; record as a second argument to 'service' below.
-                   (service openssh-service-type)
                    (service network-manager-service-type)
-                   (service wpa-supplicant-service-type)
-                   (service ntp-service-type))
+                   (service wpa-supplicant-service-type))
 
              ;; This is the default list of services we
              ;; are appending to.
