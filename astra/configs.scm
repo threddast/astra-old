@@ -52,7 +52,7 @@
    (feature-networking)
    ;; TODO: Move to systems/*.scm?
    (feature-git
-    #:sign-commits? #t)
+    #:sign-commits? #f)
    (feature-fonts
     #:font-packages (list font-jetbrains-mono font-iosevka-aile)
     #:font-monospace (font "JetBrains Mono" #:size 13)
