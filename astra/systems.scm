@@ -49,6 +49,19 @@
                 (bootloader grub-efi-bootloader)
                 (targets '("/boot/efi"))))
    (services %base-services)
+   (services
+     (append (list
+
+                   ;; To configure OpenSSH, pass an 'openssh-configuration'
+                   ;; record as a second argument to 'service' below.
+                   (service openssh-service-type)
+                   (service network-manager-service-type)
+                   (service wpa-supplicant-service-type)
+                   (service ntp-service-type))
+
+             ;; This is the default list of services we
+             ;; are appending to.
+             %base-services))
    (file-systems (cons* (file-system
                           (mount-point "/boot/efi")
                           (device (uuid "124B-646C"
