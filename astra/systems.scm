@@ -48,7 +48,7 @@
    (bootloader (bootloader-configuration
                 (bootloader grub-efi-bootloader)
                 (targets '("/boot/efi"))))
-   (services '())
+   (services %base-services)
    (file-systems (cons* (file-system
                           (mount-point "/boot/efi")
                           (device (uuid "124B-646C"
