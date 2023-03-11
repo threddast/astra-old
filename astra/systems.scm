@@ -50,29 +50,8 @@
    (bootloader (bootloader-configuration
                 (bootloader grub-efi-bootloader)
                 (targets '("/boot/efi"))))
-   (services
-     (append (list
-
-                   ;; To configure OpenSSH, pass an 'openssh-configuration'
-                   ;; record as a second argument to 'service' below.
-                   (service network-manager-service-type)
-                   (service wpa-supplicant-service-type))
-
-             ;; This is the default list of services we
-             ;; are appending to.
-             %base-services))
-   (file-systems (cons* (file-system
-                          (mount-point "/boot/efi")
-                          (device (uuid "124B-646C"
-                                        'fat32))
-                          (type "vfat"))
-                        (file-system
-                          (mount-point "/")
-                          (device (uuid
-                                   "d17ee161-a77e-456d-b2dc-3c07aa9f61f9"
-                                   'ext4))
-                          (type "ext4"))
-                        %base-file-systems))
+   (services %base-services)
+   (file-systems %base-file-systems)
    (sudoers-file #f)
    (issue "This is the GNU/Engstrand system. Welcome.\n")))
 
