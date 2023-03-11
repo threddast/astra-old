@@ -46,7 +46,12 @@
   ;; All is good, create the configuration
   (define %generated-config
     (rde-config
-     (initial-os initial-os)))
+     (initial-os initial-os)
+     (features
+       (append %user-features
+               %astra-system-base-features
+               %system-features))))
+
 
   (define %astra-home
     (rde-config-home-environment %generated-config))
