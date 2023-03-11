@@ -50,7 +50,6 @@
    (bootloader (bootloader-configuration
                 (bootloader grub-efi-bootloader)
                 (targets '("/boot/efi"))))
-   (services %base-services)
    (services
      (append (list
 
