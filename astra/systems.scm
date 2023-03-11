@@ -49,8 +49,19 @@
                 (bootloader grub-efi-bootloader)
                 (targets '("/boot/efi"))))
    (services '())
-   (file-systems %base-file-systems)
-   ;; (sudoers-file #f)
+   (file-systems (cons* (file-system
+                          (mount-point "/boot/efi")
+                          (device (uuid "124B-646C"
+                                        'fat32))
+                          (type "vfat"))
+                        (file-system
+                          (mount-point "/")
+                          (device (uuid
+                                   "d17ee161-a77e-456d-b2dc-3c07aa9f61f9"
+                                   'ext4))
+                          (type "ext4"))
+                        %base-file-systems))
+          ;; (sudoers-file #f)
    (issue "This is the GNU/Engstrand system. Welcome.\n")))
 
 (define-public %astra-system-base-features
