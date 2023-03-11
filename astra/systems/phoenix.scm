@@ -19,14 +19,14 @@
     (file-system
      (mount-point "/")
      (device
-      (uuid "d17ee161-a77e-456d-b2dc-3c07aa9f61f9"
+      (uuid "36531b8d-0cd1-4164-9725-a5a4094c1840"
             'ext4))
      (type "ext4"))
     (file-system
      (mount-point "/boot/efi")
-     (device (uuid "124B-646C" 'fat32))
+     (device (uuid "8202-E8AC" 'fat32))
      (type "vfat")))
    #:swap-devices
    (list
     (swap-space
-     (target (uuid "9b242425-fd79-43a5-ad42-b217e9e3ea2c")))))))
+     (target (uuid "5d88bf77-d8bb-4690-bb9b-d2656fbbda90")))))))
