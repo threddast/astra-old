@@ -19,12 +19,12 @@ die() {
 # -----------------------------------------------------------------------------
 
 # Write out the channels file so it can be included
-guix time-machine -C './engstrand/channels.scm' -- \
+guix time-machine -C './astra/channels.scm' -- \
      describe -f channels > './channels.scm'
 
 # Build the image
 printf 'Attempting to build the image...\n\n'
-image=$(guix time-machine -C './channels.scm' -- system image -t iso9660 './engstrand/installer.scm') \
+image=$(guix time-machine -C './channels.scm' -- system image -t iso9660 './astra/installer.scm') \
     || die 'Could not create image.'
 
 release_tag=$(date +"%Y%m%d%H%M")
